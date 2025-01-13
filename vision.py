@@ -17,9 +17,9 @@ def get_gemini_response(input, image):
         response = model.generate_content(image)
     return response.text
 
-st.set_page_config(page_title="Image Recognition App" , page_icon="🔮", layout="wide")
+st.set_page_config(page_title="Image Recognition App" , page_icon=":camera:", layout="wide", initial_sidebar_state="expanded")
 
-st.header("Gemini LLM Application")
+st.header("Image Recognition Bot")
 input = st.text_input("Input Prompt: ", key="input")
 
 uploaded_file = st.file_uploader("Choose an image... ", type=["jpg", "jpeg", "png"])
@@ -31,6 +31,10 @@ if uploaded_file is not None:
 submit=st.button("Generate Response")
 
 if submit:
-    response = get_gemini_response(input, image)
-    st.subheader("The Response is")
-    st.write(response)
+    if image is None:
+        st.warning("Please upload an image first.", icon="⚠️")
+    else:
+        with st.spinner("Generating response..."):
+            response = get_gemini_response(input, image)
+        st.success("Response generated!", icon="✅")
+        st.write(response)
