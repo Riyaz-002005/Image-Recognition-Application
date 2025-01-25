@@ -19,7 +19,7 @@ def get_gemini_response(input, image):
 
 st.set_page_config(page_title="Image Recognition App" , page_icon=":camera:", layout="wide", initial_sidebar_state="expanded")
 
-st.header("Image Recognition Bot")
+st.header("Image Recognition And ChatBot")
 input = st.text_input("Input Prompt: ", key="input")
 
 uploaded_file = st.file_uploader("Choose an image... ", type=["jpg", "jpeg", "png"])
